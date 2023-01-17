@@ -1,0 +1,6 @@
+server:
+  port: 8864
+spring:
+  datasource:
+    url: jdbc:sqlserver://appsevice.database.windows.net:1433;database=studentDB_ch;user=rootservice@appsevice;password=SQL_database;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+
