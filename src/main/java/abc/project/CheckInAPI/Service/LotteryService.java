@@ -14,11 +14,20 @@ public class LotteryService {
     LotteryRepository lotteryRepository;
 
     static Set lotterySet  = new HashSet();
-    public JSONObject lotteryResult(int cid){
+    public JSONObject lotteryResult(int cid,Boolean rollCall,int date){
         int r;
-        List<Integer> sids=lotteryRepository.LotteryAll(cid);
-        while(true ) {
+        int i =0;
+        List<Integer> sids = null;
+        // 判斷抽籤名單要從哪個Table抓出
+        if(rollCall){
+            sids = lotteryRepository.LotteryByRollCall(cid,date);
+        } else {
+            sids = lotteryRepository.LotteryAll(cid);
+        }
+
+        while( i == sids.size() ) {
             r = (int) Math.random() * (sids.size());
+            i++;
             if (lotterySet.contains(r)) {
                 //已經存在
             } else {
@@ -27,7 +36,12 @@ public class LotteryService {
                 break;
             }
         }
-        JSONObject responseObject = new JSONObject(lotteryRepository.whoIsBingo(sids.get(r)));
+        JSONObject responseObject = new JSONObject();
+        if (i == sids.size()){
+            responseObject.put("warn","已抽完");
+        }else {
+            responseObject.put("stuInfo",lotteryRepository.whoIsBingo(sids.get(r)));
+        }
         return responseObject;
     }
 
