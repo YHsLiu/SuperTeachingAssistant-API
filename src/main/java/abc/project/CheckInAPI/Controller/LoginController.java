@@ -19,9 +19,9 @@ public class LoginController {
         // 接收 app 的登入資訊
         JSONObject object = new JSONObject(body);
         // 將資訊中的 data(帳密資料) 取出
-        JSONObject data = new JSONObject("data");
+        JSONObject data = object.getJSONObject("data");
 
-        return loginService.loginTecReesult(data.getString("acc"), data.getString("pwd")).toString();
+        return loginService.loginTecReesult(data.getString("acc"), data.getString("pwd"), data.getString("univ")).toString();
     }
 
     @PostMapping("/login/student")
@@ -29,9 +29,9 @@ public class LoginController {
         // 接收 app 的登入資訊
         JSONObject object = new JSONObject(body);
         // 將資訊中的 data(帳密資料) 取出
-        JSONObject data = new JSONObject("data");
+        JSONObject data = object.getJSONObject("data");
 
-        return loginService.loginTecReesult(data.getString("acc"), data.getString("pwd")).toString();
+        return loginService.loginStuReesult(data.getString("acc"), data.getString("pwd"), data.getString("univ")).toString();
     }
 
 }
