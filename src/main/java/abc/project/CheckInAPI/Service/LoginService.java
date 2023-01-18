@@ -10,8 +10,8 @@ public class LoginService {
     @Autowired
     LoginRepository loginRep;
 
-    public JSONObject loginTecReesult( String acc, String pwd ){
-        long c = loginRep.checkTeacher( acc , pwd );
+    public JSONObject loginTecReesult( String acc, String pwd , String univ){
+        long c = loginRep.checkTeacher( acc , pwd ,univ);
 
         JSONObject responseObject = new JSONObject();
         responseObject.put("type",2);
@@ -28,8 +28,8 @@ public class LoginService {
         return responseObject;
     }
 
-    public JSONObject loginStuReesult( String acc, String pwd ){
-        long c = loginRep.checkStudent( acc , pwd );
+    public JSONObject loginStuReesult( String acc, String pwd , String univ){
+        long c = loginRep.checkStudent( acc , pwd , univ);
 
         JSONObject responseObject = new JSONObject();
         responseObject.put("type",2);
