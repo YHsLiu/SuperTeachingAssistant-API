@@ -4,9 +4,10 @@ import abc.project.CheckInAPI.Repository.Dao.LotteryDao;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+@Repository
 public class LotteryRepository implements LotteryDao {
     @Autowired
     JdbcTemplate jdbcTemplate;

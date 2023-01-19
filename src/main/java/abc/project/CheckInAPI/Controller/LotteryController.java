@@ -27,7 +27,7 @@ public class LotteryController {
     }
 
     @PostMapping("/clear")
-    public void LotteryEnd(){
-        lotteryService.resetLottery();
+    public JSONObject LotteryEnd(){
+       return lotteryService.resetLottery();
     }
 }
