@@ -11,23 +11,16 @@ public class CreateClassRepository implements CreateClassDao {
     JdbcTemplate jdbcTemplate;
 
     @Override
-    public long checkClassCod(String code) {
-        String sql = "select count(*) from 課程 where 代號=?;";
-        long c = jdbcTemplate.queryForObject(sql,new String[]{code},Long.class);
+    public long checkClassCod(String semester,String code) {
+        String sql = "select count(*) from 課程 where 代號=? and 學年=?;";
+        long c = jdbcTemplate.queryForObject(sql,new String[]{code,semester},Long.class);
         return c;
     }
 
     @Override
-    public void createClass(int tid, String name, String code) {
-        String sql = "insert into 課程([課名],[tid],[代號]) values (?,?,?);";
-        jdbcTemplate.update(sql,name,tid,code);
+    public void createClass(int tid,String semester, String name, String code) {
+        String sql = "insert into 課程([課名],[tid],[學年],[代號],[點名]) values (?,?,?,?,?);";
+        jdbcTemplate.update(sql,name,tid,semester,code,0);
         System.out.println("完成新增課程");
-    }
-
-    @Override
-    public void createRollCallList(String code) {
-        String sql1 = "select cid from 課程 where 代號=?;";
-        int cid  = jdbcTemplate.queryForObject(sql1,new String[]{code},Integer.class);
-        String sql2 = "create table "+cid+"_點名系統 (sid ";
     }
 }
