@@ -18,9 +18,23 @@ public class LoginRepository implements LoginDao {
     }
 
     @Override
+    public int Findtid(String acc, String univ) {
+        String sql = "select tid from 老師資料 where 教師編號=? and 學校=?;";
+        int tid = jdbcTemplate.queryForObject(sql,new Object[]{acc,univ}, Integer.class);
+        return tid;
+    }
+
+    @Override
     public long checkStudent(String acc, String pwd, String univ) {
         String sql = "select count(*) from 學生資料 where 學號=? and 密碼=? and 學校=?";
         long count =jdbcTemplate.queryForObject(sql,new Object[]{acc,pwd,univ}, Long.class);
         return count;
+    }
+
+    @Override
+    public int Findsid(String acc, String univ) {
+        String sql = "select sid from 學生資料 where 學號=? and 學校=?;";
+        int sid = jdbcTemplate.queryForObject(sql,new Object[]{acc,univ}, Integer.class);
+        return sid;
     }
 }
