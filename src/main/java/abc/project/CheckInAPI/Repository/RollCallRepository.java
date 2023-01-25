@@ -42,6 +42,21 @@ public class RollCallRepository implements RollCallDao {
     }
 
     @Override
+    public long ManualCheckRollCall(int cid, int sid, String dd) {
+        // 手動點名前check For studentlist & rollcall
+        String sql = "select * from 點名 where cid=? and sid=? and 日期=?";
+        long c = jdbcTemplate.queryForObject(sql,new Object[]{cid,sid,dd},Long.class);
+        return c;
+    }
+
+    @Override
+    public void ManualRollCall(int cid, int sid, String dd) {
+        // 手動點名
+        String sql = "insert into 點名([cid],[sid],[日期]) values (?,?,?);";
+        jdbcTemplate.update(sql,cid,sid,dd);
+    }
+
+    @Override
     public List<Map<String, Object>> StudentNoRCList(int cid, String dd) {
         // 未點名之學生資料
         String sql = "select * from 學生資料 where sid in (select sid from 選課 where cid=? and sid not in (select sid from 點名 where cid=? and 日期=?));";

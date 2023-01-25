@@ -49,4 +49,21 @@ public class RollCallController {
         return Info;
     }
 
+    @PostMapping("/manual/check")
+    public JSONObject ManualCheckRollCall(@RequestBody String body){
+        JSONObject object = new JSONObject(body);
+        // 將資訊中的 cid 取出
+        int cid = object.getInt("cid");
+        int sid = object.getInt("sid");
+        String dd = object.getString("date");
+        return service.ManualCheckRollCall(cid,sid,dd);
+    }
+    @PostMapping("/manual/call")
+    public void ManualRollCall(@RequestBody String body){
+        JSONObject object = new JSONObject(body);
+        int cid = object.getInt("cid");
+        int sid = object.getInt("sid");
+        String dd = object.getString("date");
+        service.ManualRollCall(cid,sid,dd);
+    }
 }

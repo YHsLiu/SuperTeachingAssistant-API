@@ -43,4 +43,22 @@ public class RollCallService {
     public List<Map<String, Object>> NoRCStudent(int cid,String dd){
         return repository.StudentNoRCList(cid, dd);
     }
+
+    public JSONObject ManualCheckRollCall(int cid,int sid,String dd){
+        JSONObject result = new JSONObject();
+        result.put("type",2);
+        if (repository.ManualCheckRollCall(cid, sid, dd)==0){
+            result.put("status",12);
+        } else {
+            result.put("status",13); // 今日已點名
+        }
+        result.put("cid",cid);
+        result.put("sid",sid);
+        result.put("date",dd);
+        return result;
+    }
+
+    public void ManualRollCall(int cid,int sid,String dd){
+        repository.ManualRollCall(cid, sid, dd);
+    }
 }
