@@ -21,6 +21,7 @@ public class CreateClassService {
             thing.put("cid",cid);
         } else {
             thing.put("status",12);
+            thing.put("cid",0);
         }
         return thing;
     }
