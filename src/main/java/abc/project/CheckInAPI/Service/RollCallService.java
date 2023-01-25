@@ -61,4 +61,8 @@ public class RollCallService {
     public void ManualRollCall(int cid,int sid,String dd){
         repository.ManualRollCall(cid, sid, dd);
     }
+
+    public void ManualCancelRollCall(int cid,int sid,String dd){
+        repository.ManualCancelRollCall(cid, sid, dd);
+    }
 }

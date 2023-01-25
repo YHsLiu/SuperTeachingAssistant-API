@@ -57,6 +57,12 @@ public class RollCallRepository implements RollCallDao {
     }
 
     @Override
+    public void ManualCancelRollCall(int cid, int sid, String dd) {
+        String sql = "update 點名 set 日期=? where cid=? and sid=? and 日期=?;";
+        jdbcTemplate.update(sql,"d",cid,sid,dd);
+    }
+
+    @Override
     public List<Map<String, Object>> StudentNoRCList(int cid, String dd) {
         // 未點名之學生資料
         String sql = "select * from 學生資料 where sid in (select sid from 選課 where cid=? and sid not in (select sid from 點名 where cid=? and 日期=?));";

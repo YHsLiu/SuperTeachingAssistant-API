@@ -12,6 +12,7 @@ public interface RollCallDao {
     public void CloseRollCall(int cid);
     public long ManualCheckRollCall(int cid,int sid,String dd);
     public void ManualRollCall(int cid,int sid,String dd);
+    public void ManualCancelRollCall(int cid,int sid,String dd);
     public List<Map<String, Object>> StudentNoRCList(int cid,String dd);
     public JSONObject ScheckRollCall(int cid);
     public JSONObject RollCallForStudent(int sid, int cid, String dd);

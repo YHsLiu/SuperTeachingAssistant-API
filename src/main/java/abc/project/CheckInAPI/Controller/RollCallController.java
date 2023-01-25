@@ -66,4 +66,13 @@ public class RollCallController {
         String dd = object.getString("date");
         service.ManualRollCall(cid,sid,dd);
     }
+
+    @PostMapping("/manual/cancel")
+    public void ManualCancelRollCall(@RequestBody String body){
+        JSONObject object = new JSONObject(body);
+        int cid = object.getInt("cid");
+        int sid = object.getInt("sid");
+        String dd = object.getString("date");
+        service.ManualCancelRollCall(cid,sid,dd);
+    }
 }
