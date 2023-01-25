@@ -17,7 +17,7 @@ public class CreateClassController {
     @PostMapping("/createclass")
     public JSONObject Creatclass(@RequestBody String body){
         JSONObject object = new JSONObject(body);
-        JSONObject data = object.getJSONObject("data");
+        JSONObject data = object.getJSONObject("classInfo");
         int tid = data.getInt("tid");
         String semester = data.getString("semester");
         String name = data.getString("className");

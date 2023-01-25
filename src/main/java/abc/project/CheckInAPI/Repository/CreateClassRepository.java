@@ -22,8 +22,8 @@ public class CreateClassRepository implements CreateClassDao {
         String sql = "insert into 課程([課名],[tid],[學年],[代號],[點名]) values (?,?,?,?,?);";
         jdbcTemplate.update(sql,name,tid,semester,code,0);
         System.out.println("完成新增課程");
-        String sql1 = "select cid from 課程 where 代號=?;";
-        int cid = jdbcTemplate.queryForObject(sql1,new Object[]{code},Integer.class);
+        String sql1 = "select cid from 課程 where 代號=? and 學年=?;";
+        int cid = jdbcTemplate.queryForObject(sql1,new Object[]{code,semester},Integer.class);
         return cid;
     }
 }
