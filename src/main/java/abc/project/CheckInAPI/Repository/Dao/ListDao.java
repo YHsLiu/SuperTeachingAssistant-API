@@ -7,4 +7,5 @@ import java.util.Map;
 
 public interface ListDao {
     public List<Map<String, Object>> AllStudentList(int cid);
+    public List<Map<String, Object>> ClassRoomList(int tid);
 }

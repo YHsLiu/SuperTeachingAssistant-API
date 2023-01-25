@@ -24,4 +24,14 @@ public class ListController {
         Info.put("list",listRepository.AllStudentList(cid));
         return Info;
     }
+
+    @PostMapping("/classroom")
+    public JSONObject ListClassroom(@RequestBody String body){
+        JSONObject data = new JSONObject(body);
+        int tid = data.getInt("tid");
+        JSONObject Info = new JSONObject();
+        Info.put("type",2);
+        Info.put("list",listRepository.ClassRoomList(tid));
+        return Info;
+    }
 }
