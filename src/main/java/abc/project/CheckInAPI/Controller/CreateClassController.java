@@ -17,7 +17,6 @@ public class CreateClassController {
     @PostMapping("/createclass")
     public JSONObject Creatclass(@RequestBody String body){
         JSONObject object = new JSONObject(body);
-        // 將資訊中的 cid 取出
         JSONObject data = object.getJSONObject("data");
         int tid = data.getInt("tid");
         String semester = data.getString("semester");

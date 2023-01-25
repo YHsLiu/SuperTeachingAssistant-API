@@ -17,7 +17,8 @@ public class CreateClassService {
         if (c == 0){
             // 檢查課程代碼若無重複則新增課程
             thing.put("status",11);
-            repository.createClass(tid,semester,name,code);
+            int cid = repository.createClass(tid,semester,name,code);
+            thing.put("cid",cid);
         } else {
             thing.put("status",12);
         }

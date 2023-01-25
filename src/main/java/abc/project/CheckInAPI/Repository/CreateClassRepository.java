@@ -18,9 +18,12 @@ public class CreateClassRepository implements CreateClassDao {
     }
 
     @Override
-    public void createClass(int tid,String semester, String name, String code) {
+    public int createClass(int tid,String semester, String name, String code) {
         String sql = "insert into 課程([課名],[tid],[學年],[代號],[點名]) values (?,?,?,?,?);";
         jdbcTemplate.update(sql,name,tid,semester,code,0);
         System.out.println("完成新增課程");
+        String sql1 = "select cid from 課程 where 代號=?;";
+        int cid = jdbcTemplate.queryForObject(sql1,new Object[]{code},Integer.class);
+        return cid;
     }
 }
