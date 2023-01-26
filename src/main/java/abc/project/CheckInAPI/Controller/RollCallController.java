@@ -17,7 +17,6 @@ public class RollCallController {
     @PostMapping("/teacher/open")
     public JSONObject OpenRollCallForTeacher(@RequestBody String body){
         JSONObject object = new JSONObject(body);
-        // 將資訊中的 cid 取出
         JSONObject data = object.getJSONObject("data");
         int cid = data.getInt("cid");
         String dd = data.getString("date");
@@ -27,7 +26,6 @@ public class RollCallController {
     @PostMapping("/teacher/open/again")
     public JSONObject OpenRollCallAgainForTeacher(@RequestBody String body){
         JSONObject object = new JSONObject(body);
-        // 將資訊中的 cid 取出
         JSONObject data = object.getJSONObject("data");
         int cid = data.getInt("cid");
         String dd = data.getString("date");
