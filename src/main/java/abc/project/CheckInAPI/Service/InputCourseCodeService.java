@@ -17,11 +17,11 @@ public class InputCourseCodeService {
         result.put("type",2);
         if(c==0){                             //表示沒有該課程代碼
             result.put("status",17);
-            result.put("mesg","課程代碼不存在");
+            result.put("mesg","查無課程名稱");
         }
         else{
             result.put("status",16);
-            result.put("mesg","查詢成功可進入教室");
+            result.put("mesg",repository.getName(code));
         }
 
         return result;

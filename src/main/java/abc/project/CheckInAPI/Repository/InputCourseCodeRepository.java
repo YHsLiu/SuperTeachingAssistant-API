@@ -18,6 +18,13 @@ public class InputCourseCodeRepository implements InputCourseCodeDao {
         return count;
     }
 
+    @Override
+    public String getName(String code) {
+
+        String sql = "select 課程名稱 from dbo.課程 where 課程代碼=?" ;
+        String classname = jdbcTemplate.queryForObject(sql,new Object[]{code}, String.class);
+        return classname;
+    }
 
 
 }
