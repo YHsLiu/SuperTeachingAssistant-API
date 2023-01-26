@@ -1,23 +1,25 @@
 package abc.project.CheckInAPI.Repository;
 
+import abc.project.CheckInAPI.Repository.Dao.RegDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
 @Repository
-public class RegRepository {
+public class RegRepository implements RegDao {
 
     @Autowired
     JdbcTemplate jdbcTemplate ;
 
+    @Override
     public long checkUser(String acc, String pwd) {
         String query = "select count(*) from dbo.學生資料 where 學號=? and 密碼=?";
         long count = jdbcTemplate.queryForObject(query, new Object[]{acc,pwd},Long.class);
         return count;
     }
 
-
+    @Override
     public void saveUser(String univ, String depart, String name, String acc,  String pwd, String email, String identity){
         String sql = null;
         if(identity.equals("我是學生")) {
