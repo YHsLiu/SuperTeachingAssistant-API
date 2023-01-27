@@ -3,7 +3,9 @@ package abc.project.CheckInAPI.Repository;
 import abc.project.CheckInAPI.Repository.Dao.InputCourseCodeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class InputCourseCodeRepository implements InputCourseCodeDao {
 
     @Autowired

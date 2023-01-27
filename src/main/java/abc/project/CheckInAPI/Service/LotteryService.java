@@ -38,16 +38,21 @@ public class LotteryService {
             }
         }
         JSONObject responseObject = new JSONObject();
+        responseObject.put("type",2);
         if (i == sids.size()){
-            responseObject.put("warn","已抽完");
+            responseObject.put("status",12); // 通知使用者名單已抽完
         }else {
+            responseObject.put("status",11);
             responseObject.put("stuInfo",lotteryRepository.whoIsBingo(sids.get(r)));
         }
         return responseObject;
     }
 
     // 清除抽籤資料
-    public void  resetLottery() {
+    public JSONObject resetLottery() {
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("type",2);
         lotterySet.clear();
+        return responseObject;
     }
 }

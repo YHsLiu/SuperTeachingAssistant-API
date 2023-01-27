@@ -1,4 +1,4 @@
-package abc.project.CheckInAPI.Controller;
+/*package abc.project.CheckInAPI.Controller;
 
 import abc.project.CheckInAPI.Service.LotteryService;
 import org.json.JSONObject;
@@ -27,7 +27,8 @@ public class LotteryController {
     }
 
     @PostMapping("/clear")
-    public void LotteryEnd(){
-        lotteryService.resetLottery();
+    public JSONObject LotteryEnd(){
+       return lotteryService.resetLottery();
     }
 }
+*/
