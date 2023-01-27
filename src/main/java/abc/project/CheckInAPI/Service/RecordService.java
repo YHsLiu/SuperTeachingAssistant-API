@@ -12,11 +12,11 @@ import java.util.Map;
 @Service
 public class RecordService {
     @Autowired
-    RecordRepository repository;
+    RecordRepository recordRepository;
 
     public Map<String, Object> SemesterRecord(int cid){
         Map<String, Object> Info = new HashMap<>();
-        List<Map<String,Object>> result = repository.RollCallRecordForSemester(cid);
+        List<Map<String,Object>> result = recordRepository.RollCallRecordForSemester(cid);
         String dd = result.get(0).get("日期").toString();
         String record = "";
         for (int i=0;i<result.size();i++){
@@ -33,6 +33,6 @@ public class RecordService {
     }
 
     public List<Map<String, Object>> TodayRecord(int cid,String dd){
-        return repository.RollCallRecordForToday(cid, dd);
+        return recordRepository.RollCallRecordForToday(cid, dd);
     }
 }

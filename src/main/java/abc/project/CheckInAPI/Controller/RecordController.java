@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/record")
 public class RecordController {
     @Autowired
-    RecordService service;
+    RecordService recordService;
 
     @PostMapping("/semester")
     public JSONObject SemesterRecord(@RequestBody String body){
@@ -21,7 +21,7 @@ public class RecordController {
         int cid = data.getInt("cid");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
-        Info.put("list",service.SemesterRecord(cid));
+        Info.put("list",recordService.SemesterRecord(cid));
         return Info;
     }
 
@@ -32,7 +32,7 @@ public class RecordController {
         String dd = data.getString("date");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
-        Info.put("list",service.TodayRecord(cid,dd));
+        Info.put("list",recordService.TodayRecord(cid,dd));
         return Info;
     }
 }
