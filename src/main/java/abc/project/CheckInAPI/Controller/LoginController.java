@@ -21,7 +21,7 @@ public class LoginController {
         // 將資訊中的 data(帳密資料) 取出
         JSONObject data = object.getJSONObject("data");
 
-        return loginService.loginTecReesult(data.getString("acc"), data.getString("pwd"), data.getString("univ")).toString();
+        return loginService.loginTecResult(data.getString("acc"), data.getString("pwd"), data.getString("univ")).toString();
     }
 
     @PostMapping("/login/student")
@@ -31,7 +31,7 @@ public class LoginController {
         // 將資訊中的 data(帳密資料) 取出
         JSONObject data = object.getJSONObject("data");
 
-        return loginService.loginStuReesult(data.getString("acc"), data.getString("pwd"), data.getString("univ")).toString();
+        return loginService.loginStuResult(data.getString("acc"), data.getString("pwd"), data.getString("univ")).toString();
     }
 
 }

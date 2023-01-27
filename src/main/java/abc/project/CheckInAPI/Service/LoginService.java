@@ -10,7 +10,7 @@ public class LoginService {
     @Autowired
     LoginRepository loginRep;
 
-    public JSONObject loginTecReesult( String acc, String pwd , String univ){
+    public JSONObject loginTecResult( String acc, String pwd , String univ){
         long c = loginRep.checkTeacher( acc , pwd ,univ);
 
         JSONObject responseObject = new JSONObject();
@@ -21,6 +21,7 @@ public class LoginService {
         } else if (c == 1){
             responseObject.put("status",11);
             responseObject.put("mes","驗證成功");
+            responseObject.put("userId",loginRep.Findtid( acc, univ));
         } else {
             responseObject.put("status",13);
             responseObject.put("mes","會員資料有重複，請檢察資料庫");
@@ -28,7 +29,7 @@ public class LoginService {
         return responseObject;
     }
 
-    public JSONObject loginStuReesult( String acc, String pwd , String univ){
+    public JSONObject loginStuResult( String acc, String pwd , String univ){
         long c = loginRep.checkStudent( acc , pwd , univ);
 
         JSONObject responseObject = new JSONObject();
@@ -39,6 +40,7 @@ public class LoginService {
         } else if (c == 1){
             responseObject.put("status",11);
             responseObject.put("mes","驗證成功");
+            responseObject.put("userId",loginRep.Findsid( acc, univ ));
         } else {
             responseObject.put("status",13);
             responseObject.put("mes","會員資料有重複，請檢察資料庫");
