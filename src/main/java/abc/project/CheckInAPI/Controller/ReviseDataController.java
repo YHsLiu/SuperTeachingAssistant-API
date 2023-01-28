@@ -42,7 +42,7 @@ public class ReviseDataController {
         String acc = object.getString("acc");
         String pwd = object.getString("pwd");
         String email = object.getString("email");
-        servise.updateStdDataResult(sid, univ, depart, name, acc, pwd, email);
+        servise.updateStdDataResult(sid, depart, name, acc, pwd, email);
     }
 
     @PostMapping("UpdataData/teacher")
@@ -55,7 +55,7 @@ public class ReviseDataController {
         String acc = object.getString("acc");
         String pwd = object.getString("pwd");
         String email = object.getString("email");
-        servise.updateTchDataResult(tid, univ,  name, acc, pwd, email);
+        servise.updateTchDataResult(tid, name, acc, pwd, email);
     }
 
 

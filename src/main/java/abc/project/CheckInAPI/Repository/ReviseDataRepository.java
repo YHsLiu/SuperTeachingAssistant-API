@@ -28,19 +28,19 @@ public class ReviseDataRepository implements ReviseDataDao {
     }
 
     @Override
-    public void updateStdData(int sid, String univ, String depart, String name, String acc, String pwd, String email) {
+    public void updateStdData(int sid, String depart, String name, String acc, String pwd, String email) {
 
-        String sql ="updata 學生資料 set [學校]=?,[科系]=?,[學生姓名]=?,[學號]=?,[密碼]=?,[信箱]=? where sid=?";
-        jdbcTemplate.update(sql,univ,depart,name,acc,pwd,email,sid);
+        String sql ="updata 學生資料 set [科系]=?,[學生姓名]=?,[學號]=?,[密碼]=?,[信箱]=? where sid=?";
+        jdbcTemplate.update(sql,depart,name,acc,pwd,email,sid);
         System.out.println("學生資料已儲存");
 
     }
 
     @Override
-    public void updateTchData(int tid, String univ, String name, String acc, String pwd, String email) {
+    public void updateTchData(int tid, String name, String acc, String pwd, String email) {
 
-        String sql ="updata 老師資料 set [學校]=?,[教師姓名]=?,[教師編號]=?,[密碼]=?,[信箱]=? where tid=?";
-        jdbcTemplate.update(sql,univ,name,acc,pwd,email,tid);
+        String sql ="updata 老師資料 set [教師姓名]=?,[教師編號]=?,[密碼]=?,[信箱]=? where tid=?";
+        jdbcTemplate.update(sql,name,acc,pwd,email,tid);
         System.out.println("教師資料已儲存");
     }
 }

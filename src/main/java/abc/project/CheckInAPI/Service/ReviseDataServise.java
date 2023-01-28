@@ -31,15 +31,15 @@ public class ReviseDataServise {
 
     }
 
-    public void updateStdDataResult(int sid, String univ, String depart, String name, String acc, String pwd, String email){
+    public void updateStdDataResult(int sid, String depart, String name, String acc, String pwd, String email){
 
-        repository.updateStdData(sid, univ, depart, name, acc, pwd, email);
+        repository.updateStdData(sid, depart, name, acc, pwd, email);
 
     }
 
-    public void updateTchDataResult(int tid, String univ, String name, String acc, String pwd, String email){
+    public void updateTchDataResult(int tid, String name, String acc, String pwd, String email){
 
-        repository.updateTchData(tid, univ, name, acc, pwd, email);
+        repository.updateTchData(tid, name, acc, pwd, email);
 
     }
 
