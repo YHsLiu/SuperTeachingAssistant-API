@@ -14,22 +14,8 @@ public class RecordService {
     @Autowired
     RecordRepository recordRepository;
 
-    public Map<String, Object> SemesterRecord(int cid){
-        Map<String, Object> Info = new HashMap<>();
-        List<Map<String,Object>> result = recordRepository.RollCallRecordForSemester(cid);
-        String dd = result.get(0).get("日期").toString();
-        String record = "";
-        for (int i=0;i<result.size();i++){
-            if (dd == result.get(i).get("日期").toString()) {
-                record += result.get(i).get("姓名")+" ";
-            } else {
-                Info.put(dd,record);
-                dd = result.get(i).get("日期").toString();
-                record = ""+result.get(i).get("姓名")+" ";
-            }
-        }
-        Info.put(dd,record);
-        return Info;
+    public List<Map<String, Object>> SemesterRecord(int cid){
+        return recordRepository.RollCallRecordForSemester(cid);
     }
 
     public List<Map<String, Object>> TodayRecord(int cid,String dd){

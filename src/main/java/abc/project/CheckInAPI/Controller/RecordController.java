@@ -31,7 +31,7 @@ public class RecordController {
         int cid = data.getInt("cid");
         String dd = data.getString("date");
         JSONObject Info = new JSONObject();
-        Info.put("type",2);
+        Info.put("type",3);
         Info.put("list",recordService.TodayRecord(cid,dd));
         return Info;
     }
