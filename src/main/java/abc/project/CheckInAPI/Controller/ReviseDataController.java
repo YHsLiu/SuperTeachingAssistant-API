@@ -19,7 +19,7 @@ public class ReviseDataController {
     public JSONObject GetStdData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
-        int sid = object.getInt("sid");
+        int sid = object.getJSONObject("data").getInt("sid");
         return servise.getStdDataResult(sid);
     }
 
@@ -27,7 +27,7 @@ public class ReviseDataController {
     public JSONObject GetTchData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
-        int tid = object.getInt("tid");
+        int tid = object.getJSONObject("data").getInt("tid");
         return servise.getTchDataResult(tid);
     }
 
