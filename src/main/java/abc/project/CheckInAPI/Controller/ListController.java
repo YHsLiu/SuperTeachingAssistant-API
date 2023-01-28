@@ -34,4 +34,14 @@ public class ListController {
         Info.put("list",listRepository.ClassRoomList(tid));
         return Info;
     }
+
+    @PostMapping("/student/classroom")
+    public JSONObject studentListClassroom(@RequestBody String body){
+        JSONObject data = new JSONObject(body);
+        int sid = data.getInt("sid");
+        JSONObject Info = new JSONObject();
+        Info.put("type",2);
+        Info.put("list",listRepository.studentEnterClassroomList(sid));
+        return Info;
+    }
 }
