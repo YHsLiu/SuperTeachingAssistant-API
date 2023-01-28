@@ -13,14 +13,20 @@ public class ReviseDataServise {
 
     public JSONObject getStdDataResult(int sid){
 
-        JSONObject STDresult = new JSONObject(repository.getStdData(sid));
+        JSONObject STDresult = new JSONObject();
+        STDresult.put("type",2);
+        STDresult.put("status",11);
+        STDresult.put("data",repository.getStdData(sid));
         return STDresult;
 
     }
 
     public JSONObject getTchDataResult(int tid){
 
-        JSONObject TCHresult = new JSONObject(repository.getTchData(tid));
+        JSONObject TCHresult = new JSONObject();
+        TCHresult.put("type",2);
+        TCHresult.put("status",11);
+        TCHresult.put("data",repository.getTchData(tid));
         return TCHresult;
 
     }
