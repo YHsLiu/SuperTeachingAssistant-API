@@ -35,4 +35,15 @@ public class RecordController {
         Info.put("list",recordService.TodayRecord(cid,dd));
         return Info;
     }
+
+    @PostMapping("/student")
+    public JSONObject StudentRecord(@RequestBody String body){
+        JSONObject data = new JSONObject(body);
+        int cid = data.getInt("cid");
+        int sid = data.getInt("sid");
+        JSONObject Info = new JSONObject();
+        Info.put("type",4);
+        Info.put("list",recordService.StudentRecord(cid,sid));
+        return Info;
+    }
 }

@@ -8,4 +8,5 @@ import java.util.Map;
 public interface RecordDao {
     public List<Map<String, Object>> RollCallRecordForSemester(int cid);
     public List<Map<String, Object>> RollCallRecordForToday(int cid, String dd);
+    public List<Map<String, Object>> RollCallRecordForStudent(int cid,int sid);
 }
