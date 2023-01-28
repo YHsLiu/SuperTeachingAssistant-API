@@ -21,4 +21,8 @@ public class RecordService {
     public List<Map<String, Object>> TodayRecord(int cid,String dd){
         return recordRepository.RollCallRecordForToday(cid, dd);
     }
+
+    public List<Map<String, Object>> StudentRecord(int cid,int sid){
+        return recordRepository.RollCallRecordForStudent(cid, sid);
+    }
 }
