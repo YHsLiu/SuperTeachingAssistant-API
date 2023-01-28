@@ -11,9 +11,9 @@ public class RegService {
 @Autowired
 RegRepository repository;
 
-public JSONObject getRegResult(String univ, String depart, String name, String acc,  String pwd, String email, String identity){
+public JSONObject RegStdResult(String univ, String depart, String name, String acc,  String pwd, String email){
 
-    long result = repository.checkUser(acc, pwd);
+    long result = repository.checkStd(acc, pwd);
     // 準備一個回傳用的 JSON物件
     JSONObject responseObject = new JSONObject();
     responseObject.put("type",2);
@@ -22,7 +22,7 @@ public JSONObject getRegResult(String univ, String depart, String name, String a
         responseObject.put("mesg","帳號已建立");
 
         //呼叫storeData請Repository存資料至DB
-        repository.saveUser(univ,depart, name, acc, pwd, email, identity);
+        repository.saveStd(univ,depart, name, acc, pwd, email);
     }
     else {
         responseObject.put("status",12);
@@ -30,6 +30,24 @@ public JSONObject getRegResult(String univ, String depart, String name, String a
     }
     return responseObject;
 }
+
+
+    public JSONObject RegTchResult(String univ, String name, String acc,  String pwd, String email){
+
+        long result = repository.checkTch(acc, pwd);
+        JSONObject responseObject = new JSONObject();
+        responseObject.put("type",2);
+        if(result == 0)  {                            //表示帳號密碼不存在
+            responseObject.put("status",11);
+            responseObject.put("mesg","帳號已建立");
+            repository.saveTch(univ, name, acc, pwd,email);
+        }
+        else {
+            responseObject.put("status",12);
+            responseObject.put("mesg","帳號已存在, 請直接登入");
+        }
+        return responseObject;
+    }
 
 
 /*class storeData{

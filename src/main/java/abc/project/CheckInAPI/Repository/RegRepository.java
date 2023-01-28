@@ -13,22 +13,34 @@ public class RegRepository implements RegDao {
     JdbcTemplate jdbcTemplate ;
 
     @Override
-    public long checkUser(String acc, String pwd) {
+    public long checkStd(String acc, String pwd) {
         String query = "select count(*) from dbo.學生資料 where 學號=? and 密碼=?";
         long count = jdbcTemplate.queryForObject(query, new Object[]{acc,pwd},Long.class);
         return count;
     }
 
     @Override
-    public void saveUser(String univ, String depart, String name, String acc,  String pwd, String email, String identity){
+    public long checkTch(String acc, String pwd) {
+        String query = "select count(*) from dbo.老師資料 where 教師編號=? and 密碼=?";
+        long count = jdbcTemplate.queryForObject(query, new Object[]{acc,pwd},Long.class);
+        return count;
+    }
+
+    @Override
+    public void saveStd(String univ, String depart, String name, String acc,  String pwd, String email){
         String sql = null;
-        if(identity.equals("我是學生")) {
-            sql = "insert into 學生資料([學校], [科系], [學生姓名], [學號], [密碼], [信箱]) values(?,?,?,?,?,?)";
-        }
-        else {
-            sql = "insert into 老師資料([學校],[科系], [學生姓名], [學號], 密碼, 信箱) values(?,?,?,?,?,?)";
-        }
+        sql = "insert into 學生資料([學校], [科系], [學生姓名], [學號], [密碼], [信箱]) values(?,?,?,?,?,?)";
         jdbcTemplate.update(sql,univ,depart,name,acc,pwd,email);
+        System.out.println("資料已儲存");
+
+    }
+
+    @Override
+    public void saveTch(String univ, String name, String acc, String pwd, String email) {
+
+        String sql;
+        sql = "insert into 老師資料([學校], [教師姓名], [教師編號], [密碼], [信箱]) values(?,?,?,?,?)";
+        jdbcTemplate.update(sql,univ,name,acc,pwd,email);
         System.out.println("資料已儲存");
 
     }
