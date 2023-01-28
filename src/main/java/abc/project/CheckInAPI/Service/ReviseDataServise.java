@@ -1,36 +1,45 @@
 package abc.project.CheckInAPI.Service;
 
-import abc.project.CheckInAPI.Repository.Dao.ReviseDataDao;
+import abc.project.CheckInAPI.Repository.ReviseDataRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-@Repository
-public class ReviseDataServise implements ReviseDataDao {
+@Service
+public class ReviseDataServise {
+
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    ReviseDataRepository repository;
 
-    @Override
-    public JSONObject getStdData(int sid) {
+    public JSONObject getStdDataResult(int sid){
 
-        String sql = "select * from 學生資料 where sid=?" ;
-        JSONObject object = jdbcTemplate.queryForObject(sql,new Object[]{sid}, JSONObject.class);
-        return null;
+        JSONObject STDresult = new JSONObject(repository.getStdData(sid));
+        return STDresult;
+
     }
 
-    @Override
-    public JSONObject getTchData(int tid) {
-        return null;
+    public JSONObject getTchDataResult(int tid){
+
+        JSONObject TCHresult = new JSONObject(repository.getTchData(tid));
+        return TCHresult;
+
     }
 
-    @Override
-    public JSONObject updateStdData(String univ, String depart, String name, String acc, String pwd, String email) {
-        return null;
+    public void updateStdDataResult(int sid, String univ, String depart, String name, String acc, String pwd, String email){
+
+        repository.updateStdData(sid, univ, depart, name, acc, pwd, email);
+
     }
 
-    @Override
-    public JSONObject updateTchData(String univ, String name, String acc, String pwd, String email) {
-        return null;
+    public void updateTchDataResult(int tid, String univ, String name, String acc, String pwd, String email){
+
+        repository.updateTchData(tid, univ, name, acc, pwd, email);
+
     }
+
+
+
+
+
+
 }

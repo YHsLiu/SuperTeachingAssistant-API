@@ -6,7 +6,7 @@ public interface ReviseDataDao {
 
     public JSONObject getStdData(int sid);
     public JSONObject getTchData(int tid);
-    public JSONObject updateStdData(String univ, String depart, String name, String acc,  String pwd, String email);
-    public JSONObject updateTchData(String univ, String name, String acc,  String pwd, String email);
+    public void updateStdData(int sid, String univ, String depart, String name, String acc,  String pwd, String email);
+    public void updateTchData(int tid, String univ, String name, String acc,  String pwd, String email);
 
 }
