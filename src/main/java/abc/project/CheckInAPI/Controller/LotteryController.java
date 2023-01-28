@@ -1,4 +1,4 @@
-/*package abc.project.CheckInAPI.Controller;
+package abc.project.CheckInAPI.Controller;
 
 import abc.project.CheckInAPI.Service.LotteryService;
 import org.json.JSONObject;
@@ -31,4 +31,3 @@ public class LotteryController {
        return lotteryService.resetLottery();
     }
 }
-*/
