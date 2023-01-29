@@ -28,11 +28,19 @@ public class LotteryRepository implements LotteryDao {
     }
 
     @Override
-    public List<Integer> LotteryByRollCall(int cid, int date) {
-        // 若已點名，則從(Table:cid+"點名紀錄")抓今天有點名的名單(column:(int)date)來抽
-        String sql = "select `sid` from "+cid+"點名紀錄 where "+date+"=?";
-        List<Integer> sids = jdbcTemplate.queryForList(sql,new Object[]{1}, Integer.class); // 1有到，0沒到
+    public List<Integer> LotteryByRollCall(int cid, String date) {
+        // 若已點名，則從(Table:"點名紀錄")抓今天有點名的名單(column:cid+日期)來抽
+        String sql = "select `sid` from 點名紀錄 where cid=? and 日期=?";
+        List<Integer> sids = jdbcTemplate.queryForList(sql,new Object[]{cid,date}, Integer.class);
         return sids;
+    }
+
+    @Override
+    public long CheckRollCallForLottery(int cid, String date) {
+        // 判斷今日是否已點名(c=0 -> LotteryAll, c>0 -> LotteryByRollCall
+        String sql = "select count(*) from 點名紀錄 where cid=? and 日期=?";
+        long c = jdbcTemplate.queryForObject(sql,new Object[]{cid,date}, Long.class);
+        return c;
     }
 
 

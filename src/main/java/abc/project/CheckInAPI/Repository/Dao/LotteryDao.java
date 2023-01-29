@@ -7,5 +7,6 @@ import java.util.List;
 public interface LotteryDao {
     public List<Integer>  LotteryAll(int cid);
     public JSONObject whoIsBingo(int sid);
-    public List<Integer>  LotteryByRollCall(int cid,int date);
+    public List<Integer>  LotteryByRollCall(int cid,String date);
+    public long  CheckRollCallForLottery(int cid,String date);
 }

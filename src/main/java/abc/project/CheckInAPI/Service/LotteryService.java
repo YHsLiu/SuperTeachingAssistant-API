@@ -15,35 +15,31 @@ public class LotteryService {
     LotteryRepository lotteryRepository;
 
     static Set lotterySet  = new HashSet();
-    public JSONObject lotteryResult(int cid,Boolean rollCall,int date){
-        int r = 0;
-        int i =0;
+    public JSONObject lotteryResult(int cid,String date){
         List<Integer> sids;
         // 判斷抽籤名單要從哪個Table抓出
-        if(rollCall){
+        if( lotteryRepository.CheckRollCallForLottery(cid, date)>0 ){
             sids = lotteryRepository.LotteryByRollCall(cid,date);
         } else {
             sids = lotteryRepository.LotteryAll(cid);
         }
-
-        while( i == sids.size() ) {
-            r = (int) Math.random() * (sids.size());
-            i++;
-            if (lotterySet.contains(r)) {
-                //已經存在
-            } else {
-                // set 中無此號碼 因此成功
-                lotterySet.add(r);
-                break;
-            }
-        }
         JSONObject responseObject = new JSONObject();
         responseObject.put("type",2);
-        if (i == sids.size()){
-            responseObject.put("status",12); // 通知使用者名單已抽完
+        if (lotterySet.size() == sids.size()) {
+            responseObject.put("status", 13); // 通知使用者名單已抽完
         }else {
-            responseObject.put("status",11);
-            responseObject.put("stuInfo",lotteryRepository.whoIsBingo(sids.get(r)));
+            while (lotterySet.size() < sids.size()) {
+                int r = (int) Math.random() * (sids.size());
+                if (lotterySet.contains(r)) {
+                    //已經存在
+                } else {
+                    // set 中無此號碼 因此成功
+                    lotterySet.add(r);
+                    responseObject.put("status",12);
+                    responseObject.put("stuInfo",lotteryRepository.whoIsBingo(sids.get(r)));
+                    break;
+                }
+            }
         }
         return responseObject;
     }

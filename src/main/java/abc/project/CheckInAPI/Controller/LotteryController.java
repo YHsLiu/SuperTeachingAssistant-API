@@ -20,10 +20,8 @@ public class LotteryController {
         JSONObject object = new JSONObject(body);
         // 將資訊中的 cid 取出
         int cid = object.getInt("cid");
-        Boolean rollCall = object.getBoolean("rollCall");
-        int date = object.getInt("date");
-
-        return lotteryService.lotteryResult(cid,rollCall,date);
+        String date = object.getString("date");
+        return lotteryService.lotteryResult(cid,date);
     }
 
     @PostMapping("/clear")
