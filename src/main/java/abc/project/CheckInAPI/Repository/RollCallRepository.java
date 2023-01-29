@@ -23,7 +23,7 @@ public class RollCallRepository implements RollCallDao {
 
     @Override
     public void OpenRollCall(int cid, String dd) {
-        String sql1 = "update 課程 set 狀態=1 where cid=?;";
+        String sql1 = "update 課程 set 點名=1 where cid=?;";
         String sql2 = "insert into 點名紀錄([cid],[sid],[日期]) values (?,?,?);";
         jdbcTemplate.update(sql1,cid);
         jdbcTemplate.update(sql2,cid,0,dd);  // 標記課程今日有點名
@@ -37,7 +37,7 @@ public class RollCallRepository implements RollCallDao {
 
     @Override
     public void CloseRollCall(int cid) {
-        String sql = "update 課程 set 狀態=0 where cid=?;";
+        String sql = "update 課程 set 點名=0 where cid=?;";
         jdbcTemplate.update(sql,cid);
     }
 

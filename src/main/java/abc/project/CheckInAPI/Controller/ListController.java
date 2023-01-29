@@ -32,6 +32,7 @@ public class ListController {
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.ClassRoomList(tid));
+        System.out.println(12+"");
         return Info;
     }
 
