@@ -19,10 +19,10 @@ public class CreateClassController {
         JSONObject object = new JSONObject(body);
         JSONObject data = object.getJSONObject("classInfo");
         int tid = data.getInt("tid");
-        String semester = data.getString("semester");
+        int semester = data.getInt("semester");
         String name = data.getString("className");
         String code = data.getString("classCode");
-
+        System.out.println(tid+" "+semester+" "+name+" "+ code);
         return service.CreateNewClassResult(tid,semester,name,code);
     }
 }

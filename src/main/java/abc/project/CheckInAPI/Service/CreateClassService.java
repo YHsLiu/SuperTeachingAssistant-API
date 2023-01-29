@@ -10,7 +10,7 @@ public class CreateClassService {
     @Autowired
     CreateClassRepository repository;
 
-    public JSONObject CreateNewClassResult(int tid,String semester, String name, String code){
+    public JSONObject CreateNewClassResult(int tid,int semester, String name, String code){
         JSONObject thing = new JSONObject();
         long c = repository.checkClassCod(semester,code);
         thing.put("type",2);
@@ -23,6 +23,7 @@ public class CreateClassService {
             thing.put("status",13);
             thing.put("cid",0);
         }
+        System.out.println(thing.getInt("status")+"");
         return thing;
     }
 }
