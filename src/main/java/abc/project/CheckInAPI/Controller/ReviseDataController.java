@@ -16,32 +16,33 @@ public class ReviseDataController {
     ReviseDataServise servise;
 
     @PostMapping("GetData/student")
-    public JSONObject GetStdData(@RequestBody String rb){
+    public String GetStdData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
         int sid = object.getJSONObject("data").getInt("sid");
-        return servise.getStdDataResult(sid);
+        System.out.println(sid);
+        return servise.getStdDataResult(sid).toString();
     }
 
     @PostMapping("GetData/teacher")
-    public JSONObject GetTchData(@RequestBody String rb){
+    public String GetTchData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
         int tid = object.getJSONObject("data").getInt("tid");
-        return servise.getTchDataResult(tid);
+        return servise.getTchDataResult(tid).toString();
     }
 
     @PostMapping("UpdataData/student")
     public void UpdataStdData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
-        int sid = object.getInt("sid");
-        String univ = object.getString("univ");
-        String depart = object.getString("department");
-        String name = object.getString("name");
-        String acc = object.getString("acc");
-        String pwd = object.getString("pwd");
-        String email = object.getString("email");
+        JSONObject dataForApp = object.getJSONObject("data");
+        int sid = dataForApp.getInt("sid");
+        String depart = dataForApp.getString("department");
+        String name = dataForApp.getString("name");
+        String acc = dataForApp.getString("acc");
+        String pwd = dataForApp.getString("pwd");
+        String email = dataForApp.getString("email");
         servise.updateStdDataResult(sid, depart, name, acc, pwd, email);
     }
 
@@ -49,12 +50,12 @@ public class ReviseDataController {
     public void UpdataTchData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
-        int tid = object.getInt("tid");
-        String univ = object.getString("univ");
-        String name = object.getString("name");
-        String acc = object.getString("acc");
-        String pwd = object.getString("pwd");
-        String email = object.getString("email");
+        JSONObject dataForApp = object.getJSONObject("data");
+        int tid = dataForApp.getInt("tid");
+        String name = dataForApp.getString("name");
+        String acc = dataForApp.getString("acc");
+        String pwd = dataForApp.getString("pwd");
+        String email = dataForApp.getString("email");
         servise.updateTchDataResult(tid, name, acc, pwd, email);
     }
 
