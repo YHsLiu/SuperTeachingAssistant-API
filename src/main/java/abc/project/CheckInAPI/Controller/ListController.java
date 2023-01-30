@@ -19,10 +19,11 @@ public class ListController {
     public String ListAllStu(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int cid = data.getInt("cid");
+        System.out.println("classroom cid:"+cid);
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.AllStudentList(cid));
-        System.out.println("classroom list:"+Info);
+        // System.out.println("classroom list:"+Info);
         return Info.toString();
     }
 
@@ -33,7 +34,7 @@ public class ListController {
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.ClassRoomList(tid));
-        System.out.println("classroom:  " + Info);
+        // System.out.println("classroom:  " + Info);
         return Info.toString();
     }
 

@@ -15,7 +15,7 @@ public class StdRollCallController {
 
     @Autowired
     StdRollCallService service;
-    @PostMapping("StdRollCall")
+    @PostMapping("/StdRollCall")
     public String checkRollCall(@RequestBody RequestBody rb){
 
         JSONObject json = new JSONObject(rb);
@@ -23,9 +23,17 @@ public class StdRollCallController {
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         String dd = data.getString("date");
-        return service.stdRollCallResult(cid,sid,dd).toString();
+        return service.stdRollCallResult(cid,sid,dd); // 回傳String 若為2即為成功
     }
 
+    @PostMapping("/StdEnterRollCall")
+    public String EnterCheckRollCall(@RequestBody RequestBody rb){
 
-
+        JSONObject json = new JSONObject(rb);
+        JSONObject data = json.getJSONObject("data");
+        int cid = data.getInt("cid");
+        int sid = data.getInt("sid");
+        String dd = data.getString("date");
+        return service.stdEnterRollCallCheck(cid,sid,dd); // 回傳String 若為2即為成功
+    }
 }

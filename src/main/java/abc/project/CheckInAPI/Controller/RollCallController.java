@@ -54,6 +54,7 @@ public class RollCallController {
         int cid = object.getInt("cid");
         int sid = object.getInt("sid");
         String dd = object.getString("date");
+        System.out.println("手動檢查結果:" +service.ManualCheckRollCall(cid,sid,dd).toString());
         return service.ManualCheckRollCall(cid,sid,dd).toString();
     }
     @PostMapping("/manual/call")

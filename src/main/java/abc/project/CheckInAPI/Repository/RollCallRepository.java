@@ -44,8 +44,9 @@ public class RollCallRepository implements RollCallDao {
     @Override
     public long ManualCheckRollCall(int cid, int sid, String dd) {
         // 手動點名前check For studentlist & rollcall
-        String sql = "select * from 點名紀錄 where cid=? and sid=? and 日期=?";
+        String sql = "select count(*) from 點名紀錄 where cid=? and sid=? and 日期=?";
         long c = jdbcTemplate.queryForObject(sql,new Object[]{cid,sid,dd},Long.class);
+        System.out.println("Manual c:"+c);
         return c;
     }
 
@@ -71,13 +72,23 @@ public class RollCallRepository implements RollCallDao {
     }
 
     @Override
-    public JSONObject ScheckRollCall(int cid) {
-        return null;
+    public int SEnterCheckRollCall(int cid) {
+        String sql = "select 點名 from 課程 where cid=?";
+        int c = jdbcTemplate.queryForObject(sql,new Object[]{cid},Integer.class);
+        return c;
+    }
+
+    @Override
+    public long SCheckIfRollCall(int cid, int sid, String dd) {
+        String sql = "select count(*) from 點名紀錄 where cid=? and sid=? and 日期=?";
+        long c = jdbcTemplate.queryForObject(sql,new Object[]{cid,sid,dd},Long.class);
+        return c;
     }
 
 
     @Override
-    public JSONObject RollCallForStudent(int sid, int cid, String date) {
-        return null;
+    public void RollCallForStudent(int sid, int cid, String dd) {
+        String sql = "insert into 點名紀錄([cid],[sid],[日期]) values (?,?,?);";
+        jdbcTemplate.update(sql,cid,sid,dd);
     }
 }

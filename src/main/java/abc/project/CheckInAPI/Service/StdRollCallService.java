@@ -12,19 +12,29 @@ public class StdRollCallService {
     @Autowired
     RollCallRepository repository;
 
-    public JSONObject stdRollCallResult(int cid, int sid, String dd){
-        long c = repository.ManualCheckRollCall(cid, sid, dd);
-        JSONObject result = new JSONObject();
-        result.put("type",2);
-        if(c==0){
-            //第一次點名, 資料寫入DB
-            repository.ManualRollCall(cid, sid, dd);
-            result.put("status",21);
-        }else{
-            result.put("status",22);
-        }
+    public String stdRollCallResult(int cid, int sid, String dd){
+        repository.RollCallForStudent(cid, sid, dd);
+        String type = "2";
+     return type;
+    }
 
-     return result;
+    public String stdEnterRollCallCheck(int cid, int sid, String dd){
+        JSONObject data = new JSONObject();
+        if (repository.SEnterCheckRollCall(cid) == 1){
+            // 開放點名
+            data.put("type",2);
+            if (repository.SCheckIfRollCall(cid,sid,dd) == 0){
+                // 未點名->點名按鈕設定可點選
+                data.put("status",12);
+            } else {
+                // 已點名->UI顯示已點名
+                data.put("status",13);
+            }
+        } else {
+            // 未開放點名
+            data.put("type",3);
+        }
+        return data.toString();
     }
 
 }

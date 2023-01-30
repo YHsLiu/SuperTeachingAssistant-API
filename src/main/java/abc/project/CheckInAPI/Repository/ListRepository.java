@@ -17,18 +17,16 @@ public class ListRepository implements ListDao {
 
     @Override
     public List<Map<String, Object>> AllStudentList(int cid) {
-        String sql = "select b.sid b.學生姓名, b.科系, b.學號 from 選課 a, 學生資料 b where a.sid=b.sid and a.cid=? order by b.學號";
-        List<Map<String, Object>> stuList = jdbcTemplate.queryForList(sql,new int[] {cid},null);
+        String sql = "select b.sid, b.學生姓名, b.科系, b.學號 from 選課 a, 學生資料 b where a.sid=b.sid and a.cid=? order by b.學號";
+        List<Map<String, Object>> stuList = jdbcTemplate.queryForList(sql,new Object[] {cid});
+        System.out.println("學生名單的cid="+cid);
         return stuList;
     }
 
     @Override
     public List<Map<String, Object>> ClassRoomList(int tid) {
         String sql = "select * from 課程 where tid=?;";
-        System.out.println("教室選擇的tid="+tid);
         List<Map<String, Object>> roomList = jdbcTemplate.queryForList(sql,new Object[] {tid});
-
-        System.out.println(roomList);
         return roomList;
     }
 
