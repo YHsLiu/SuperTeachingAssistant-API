@@ -45,6 +45,7 @@ public class ListController {
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.studentEnterClassroomList(sid));
+        System.out.println("classroom:  " + Info);
         return Info.toString();
     }
 }

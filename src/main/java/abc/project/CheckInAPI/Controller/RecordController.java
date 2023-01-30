@@ -17,7 +17,8 @@ public class RecordController {
 
     @PostMapping("/semester")
     public String SemesterRecord(@RequestBody String body){
-        JSONObject data = new JSONObject(body);
+        JSONObject packet = new JSONObject(body);
+        JSONObject data = packet.getJSONObject("data");
         int cid = data.getInt("cid");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
@@ -27,7 +28,8 @@ public class RecordController {
 
     @PostMapping("/today")
     public String TodayRecord(@RequestBody String body){
-        JSONObject data = new JSONObject(body);
+        JSONObject packet = new JSONObject(body);
+        JSONObject data = packet.getJSONObject("data");
         int cid = data.getInt("cid");
         String dd = data.getString("date");
         JSONObject Info = new JSONObject();
@@ -38,7 +40,8 @@ public class RecordController {
 
     @PostMapping("/student")
     public String StudentRecord(@RequestBody String body){
-        JSONObject data = new JSONObject(body);
+        JSONObject packet = new JSONObject(body);
+        JSONObject data = packet.getJSONObject("data");
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         JSONObject Info = new JSONObject();

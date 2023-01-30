@@ -32,7 +32,7 @@ public class ListRepository implements ListDao {
 
     @Override
     public List<Map<String, Object>> studentEnterClassroomList(int sid) {
-        String sql = "select * from 課程 where cid in (select cid from 選課 where sid=? order by cid);";
+        String sql = "select * from 課程 where cid in (select cid from 選課 where sid=?)order by cid;";
         List<Map<String, Object>> roomList = jdbcTemplate.queryForList(sql,new Object[] {sid});
         return roomList;
     }
