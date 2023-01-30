@@ -21,11 +21,13 @@ public class LotteryController {
         // 將資訊中的 cid 取出
         int cid = object.getInt("cid");
         String date = object.getString("date");
+        System.out.println("bingo1");
         return lotteryService.lotteryResult(cid,date).toString();
     }
 
     @PostMapping("/clear")
     public String LotteryEnd(){
-       return lotteryService.resetLottery().toString();
+        System.out.println("LotteryEnd");
+        return lotteryService.resetLottery().toString();
     }
 }
