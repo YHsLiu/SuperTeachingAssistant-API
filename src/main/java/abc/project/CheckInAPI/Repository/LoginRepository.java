@@ -36,6 +36,7 @@ public class LoginRepository implements LoginDao {
     public int Findsid(String acc, String univ) {
         String sql = "select sid from 學生資料 where 學號=? and 學校=?;";
         int sid = jdbcTemplate.queryForObject(sql,new Object[]{acc,univ}, Integer.class);
+        System.out.println(sid);
         return sid;
     }
 }

@@ -5,29 +5,24 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class ReviseDataServise {
 
     @Autowired
     ReviseDataRepository repository;
 
-    public JSONObject getStdDataResult(int sid){
+    public Map<String,Object> getStdDataResult(int sid){
 
-        JSONObject STDresult = new JSONObject();
-        STDresult.put("type",2);
-        STDresult.put("status",11);
-        STDresult.put("data",repository.getStdData(sid));
-        return STDresult;
+        return repository.getStdData(sid);
 
     }
 
-    public JSONObject getTchDataResult(int tid){
+    public Map<String,Object> getTchDataResult(int tid){
 
-        JSONObject TCHresult = new JSONObject();
-        TCHresult.put("type",2);
-        TCHresult.put("status",11);
-        TCHresult.put("data",repository.getTchData(tid));
-        return TCHresult;
+        return repository.getTchData(tid);
 
     }
 
