@@ -16,19 +16,19 @@ public class ReviseDataController {
     ReviseDataServise servise;
 
     @PostMapping("GetData/student")
-    public JSONObject GetStdData(@RequestBody String rb){
+    public String GetStdData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
         int sid = object.getJSONObject("data").getInt("sid");
-        return servise.getStdDataResult(sid);
+        return servise.getStdDataResult(sid).toString();
     }
 
     @PostMapping("GetData/teacher")
-    public JSONObject GetTchData(@RequestBody String rb){
+    public String GetTchData(@RequestBody String rb){
 
         JSONObject object = new JSONObject(rb);
         int tid = object.getJSONObject("data").getInt("tid");
-        return servise.getTchDataResult(tid);
+        return servise.getTchDataResult(tid).toString();
     }
 
     @PostMapping("UpdataData/student")
