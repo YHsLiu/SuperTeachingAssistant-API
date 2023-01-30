@@ -15,17 +15,17 @@ public class LotteryController {
     LotteryService lotteryService;
 
     @PostMapping("/bingo")
-    public JSONObject LotteryGo(@RequestBody String body){
+    public String LotteryGo(@RequestBody String body){
         // 接收 app 的課程資訊
         JSONObject object = new JSONObject(body);
         // 將資訊中的 cid 取出
         int cid = object.getInt("cid");
         String date = object.getString("date");
-        return lotteryService.lotteryResult(cid,date);
+        return lotteryService.lotteryResult(cid,date).toString();
     }
 
     @PostMapping("/clear")
-    public JSONObject LotteryEnd(){
-       return lotteryService.resetLottery();
+    public String LotteryEnd(){
+       return lotteryService.resetLottery().toString();
     }
 }

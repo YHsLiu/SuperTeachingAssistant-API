@@ -14,7 +14,7 @@ public class CreateClassRepository implements CreateClassDao {
     public long checkClassCod(int semester,String code) {
         String sql = "select count(*) from 課程 where 課程代碼=? and 學年度=?;";
         long c = jdbcTemplate.queryForObject(sql,new Object[]{code,semester},Long.class);
-        System.out.println(c+" ");
+        System.out.println("check 課程是否有重複，0沒重複，1重複"+c+" ");
         return c;
     }
 

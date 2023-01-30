@@ -15,25 +15,25 @@ public class RollCallController {
     RollCallService service;
 
     @PostMapping("/teacher/open")
-    public JSONObject OpenRollCallForTeacher(@RequestBody String body){
+    public String OpenRollCallForTeacher(@RequestBody String body){
         JSONObject object = new JSONObject(body);
         JSONObject data = object.getJSONObject("data");
         int cid = data.getInt("cid");
         String dd = data.getString("date");
-        return service.RollCallOpenByT(cid,dd);
+        return service.RollCallOpenByT(cid,dd).toString();
     }
 
     @PostMapping("/teacher/open/again")
-    public JSONObject OpenRollCallAgainForTeacher(@RequestBody String body){
+    public String OpenRollCallAgainForTeacher(@RequestBody String body){
         JSONObject object = new JSONObject(body);
         JSONObject data = object.getJSONObject("data");
         int cid = data.getInt("cid");
         String dd = data.getString("date");
-        return service.RollCallOpenAgainByT(cid,dd);
+        return service.RollCallOpenAgainByT(cid,dd).toString();
     }
 
     @PostMapping("/teacher/close")
-    public JSONObject CloseRollCallForTeacher(@RequestBody String body){
+    public String CloseRollCallForTeacher(@RequestBody String body){
         JSONObject object = new JSONObject(body);
         JSONObject data = object.getJSONObject("data");
         int cid = data.getInt("cid");
@@ -44,17 +44,17 @@ public class RollCallController {
         Info.put("type",2);
         // 回傳未點名之學生資料
         Info.put("list",service.NoRCStudent(cid,dd));
-        return Info;
+        return Info.toString();
     }
 
     @PostMapping("/manual/check")
-    public JSONObject ManualCheckRollCall(@RequestBody String body){
+    public String ManualCheckRollCall(@RequestBody String body){
         JSONObject object = new JSONObject(body);
         // 將資訊中的 cid 取出
         int cid = object.getInt("cid");
         int sid = object.getInt("sid");
         String dd = object.getString("date");
-        return service.ManualCheckRollCall(cid,sid,dd);
+        return service.ManualCheckRollCall(cid,sid,dd).toString();
     }
     @PostMapping("/manual/call")
     public void ManualRollCall(@RequestBody String body){

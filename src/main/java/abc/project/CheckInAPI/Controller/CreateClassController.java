@@ -15,7 +15,7 @@ public class CreateClassController {
     CreateClassService service;
 
     @PostMapping("/createclass")
-    public JSONObject Creatclass(@RequestBody String body){
+    public String Creatclass(@RequestBody String body){
         JSONObject object = new JSONObject(body);
         JSONObject data = object.getJSONObject("classInfo");
         int tid = data.getInt("tid");
@@ -23,6 +23,6 @@ public class CreateClassController {
         String name = data.getString("className");
         String code = data.getString("classCode");
         System.out.println(tid+" "+semester+" "+name+" "+ code);
-        return service.CreateNewClassResult(tid,semester,name,code);
+        return service.CreateNewClassResult(tid,semester,name,code).toString();
     }
 }

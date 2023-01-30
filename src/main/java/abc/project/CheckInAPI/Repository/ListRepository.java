@@ -25,7 +25,9 @@ public class ListRepository implements ListDao {
     @Override
     public List<Map<String, Object>> ClassRoomList(int tid) {
         String sql = "select * from 課程 where tid=?;";
-        List<Map<String, Object>> roomList = jdbcTemplate.queryForList(sql,new int[] {tid},null);
+        System.out.println("教室選擇的tid="+tid);
+        List<Map<String, Object>> roomList = jdbcTemplate.queryForList(sql,new Object[] {tid});
+
         System.out.println(roomList);
         return roomList;
     }
@@ -33,7 +35,7 @@ public class ListRepository implements ListDao {
     @Override
     public List<Map<String, Object>> studentEnterClassroomList(int sid) {
         String sql = "select * from 課程 where cid in (select cid from 選課 where sid=? order by cid);";
-        List<Map<String, Object>> roomList = jdbcTemplate.queryForList(sql,new int[] {sid},null);
+        List<Map<String, Object>> roomList = jdbcTemplate.queryForList(sql,new Object[] {sid});
         return roomList;
     }
 }

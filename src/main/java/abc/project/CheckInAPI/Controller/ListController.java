@@ -16,33 +16,34 @@ public class ListController {
     ListRepository listRepository;
 
     @PostMapping("/allStu")
-    public JSONObject ListAllStu(@RequestBody String body){
+    public String ListAllStu(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int cid = data.getInt("cid");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.AllStudentList(cid));
-        return Info;
+        System.out.println("classroom list:"+Info);
+        return Info.toString();
     }
 
     @PostMapping("/classroom")
-    public JSONObject ListClassroom(@RequestBody String body){
+    public String ListClassroom(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int tid = data.getInt("tid");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.ClassRoomList(tid));
-        System.out.println(12+"");
-        return Info;
+        System.out.println("classroom:  " + Info);
+        return Info.toString();
     }
 
     @PostMapping("/student/classroom")
-    public JSONObject studentListClassroom(@RequestBody String body){
+    public String studentListClassroom(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int sid = data.getInt("sid");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",listRepository.studentEnterClassroomList(sid));
-        return Info;
+        return Info.toString();
     }
 }

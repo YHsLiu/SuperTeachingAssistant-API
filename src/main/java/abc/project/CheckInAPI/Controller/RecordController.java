@@ -16,34 +16,34 @@ public class RecordController {
     RecordService recordService;
 
     @PostMapping("/semester")
-    public JSONObject SemesterRecord(@RequestBody String body){
+    public String SemesterRecord(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int cid = data.getInt("cid");
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",recordService.SemesterRecord(cid));
-        return Info;
+        return Info.toString();
     }
 
     @PostMapping("/today")
-    public JSONObject TodayRecord(@RequestBody String body){
+    public String TodayRecord(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int cid = data.getInt("cid");
         String dd = data.getString("date");
         JSONObject Info = new JSONObject();
         Info.put("type",3);
         Info.put("list",recordService.TodayRecord(cid,dd));
-        return Info;
+        return Info.toString();
     }
 
     @PostMapping("/student")
-    public JSONObject StudentRecord(@RequestBody String body){
+    public String StudentRecord(@RequestBody String body){
         JSONObject data = new JSONObject(body);
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         JSONObject Info = new JSONObject();
         Info.put("type",4);
         Info.put("list",recordService.StudentRecord(cid,sid));
-        return Info;
+        return Info.toString();
     }
 }
