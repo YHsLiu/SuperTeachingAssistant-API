@@ -15,8 +15,8 @@ public class RecordRepository implements RecordDao {
 
     @Override
     public List<Map<String, Object>> RollCallRecordForSemester(int cid) {
-        String sql = "select b.日期,a.學號,a.學生姓名 from 學生資料 a,(select sid,日期 from 點名紀錄 where cid=?) b where a.sid=b.sid order by b.日期,a.學號;";
-        List<Map<String, Object>> recordForSemester = jdbcTemplate.queryForList(sql,new Object[]{cid});
+        String sql = "select b.日期,a.學號,a.學生姓名 from 學生資料 a,(select sid,日期 from 點名紀錄 where cid=? and 日期 not in (?)) b where a.sid=b.sid order by b.日期,a.學號;";
+        List<Map<String, Object>> recordForSemester = jdbcTemplate.queryForList(sql,new Object[]{cid,"d"});
         return recordForSemester;
     }
 
