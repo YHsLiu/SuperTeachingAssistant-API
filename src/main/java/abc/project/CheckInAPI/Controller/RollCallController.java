@@ -20,6 +20,7 @@ public class RollCallController {
         JSONObject data = object.getJSONObject("data");
         int cid = data.getInt("cid");
         String dd = data.getString("date");
+        System.out.println("OpenRollCallForTeacher");
         return service.RollCallOpenByT(cid,dd).toString();
     }
 
@@ -63,6 +64,7 @@ public class RollCallController {
         int cid = object.getInt("cid");
         int sid = object.getInt("sid");
         String dd = object.getString("date");
+        System.out.println("ManualRollCall object:"+object);
         service.ManualRollCall(cid,sid,dd);
     }
 

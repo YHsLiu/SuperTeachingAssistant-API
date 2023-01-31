@@ -22,6 +22,7 @@ public class RollCallService {
             repository.OpenRollCall(cid, dd);
             result.put("status",12); // 已打開點名開關
         }
+        System.out.println("RollCallOpenByT status: "+result);
         return result;
     }
 
@@ -33,6 +34,7 @@ public class RollCallService {
         // 而後再開點名
         repository.OpenRollCall(cid, dd);
         result.put("status",12);
+        System.out.println("RollCallOpenAgainByT status: "+result);
         return result;
     }
 
