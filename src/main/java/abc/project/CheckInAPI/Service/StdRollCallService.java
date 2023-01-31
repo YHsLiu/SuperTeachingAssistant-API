@@ -21,17 +21,21 @@ public class StdRollCallService {
     public String stdEnterRollCallCheck(int cid, int sid, String dd){
         JSONObject data = new JSONObject();
         if (repository.SEnterCheckRollCall(cid) == 1){
+            System.out.println("stdEnterRollCallCheck : 開放點名(1)");
             // 開放點名
             data.put("type",2);
             if (repository.SCheckIfRollCall(cid,sid,dd) == 0){
                 // 未點名->點名按鈕設定可點選
+                System.out.println("stdEnterRollCallCheck : 開放未點名");
                 data.put("status",12);
             } else {
-                // 已點名->UI顯示已點名
+                // 已點名(1)->UI顯示已點名
+                System.out.println("stdEnterRollCallCheck : 開放已點名");
                 data.put("status",13);
             }
         } else {
-            // 未開放點名
+            System.out.println("stdEnterRollCallCheck : 未開放點名(0)");
+            // 未開放點名(0)
             data.put("type",3);
         }
         return data.toString();

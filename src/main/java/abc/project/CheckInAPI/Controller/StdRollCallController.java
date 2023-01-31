@@ -15,25 +15,27 @@ public class StdRollCallController {
 
     @Autowired
     StdRollCallService service;
-    @PostMapping("/StdRollCall")
-    public String checkRollCall(@RequestBody RequestBody rb){
+    @PostMapping("/StdRollCall")  //第二步 btn後
+    public String checkRollCall(@RequestBody String rb){
 
         JSONObject json = new JSONObject(rb);
         JSONObject data = json.getJSONObject("data");
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         String dd = data.getString("date");
+        System.out.println("api點按鈕後來的data"+data);
         return service.stdRollCallResult(cid,sid,dd); // 回傳String 若為2即為成功
     }
 
-    @PostMapping("/StdEnterRollCall")
-    public String EnterCheckRollCall(@RequestBody RequestBody rb){
+    @PostMapping("/StdEnterRollCall") //第一步 oncreate
+    public String EnterCheckRollCall(@RequestBody String rb){
 
         JSONObject json = new JSONObject(rb);
         JSONObject data = json.getJSONObject("data");
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         String dd = data.getString("date");
+        System.out.println("EnterCheckRollCall 前端來的"+data);
         return service.stdEnterRollCallCheck(cid,sid,dd); // 回傳String 若為2即為成功
     }
 }

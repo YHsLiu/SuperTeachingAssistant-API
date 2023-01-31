@@ -16,13 +16,14 @@ public class InputCourseCodeController {
     InputCourseCodeService service ;
 
     @PostMapping("/InputClassCode")
-    public String inputCode(@RequestBody RequestBody rb){
+    public String inputCode(@RequestBody String rb){
         JSONObject packet = new JSONObject(rb);
         System.out.println("前端傳來的:"+packet);
         JSONObject data = packet.getJSONObject("data");
         String code = data.getString("code");
+        int sid = data.getInt("sid");
 
 
-        return service.getCodeResult(code).toString();
+        return service.getCodeResult(code,sid).toString();
     }
 }

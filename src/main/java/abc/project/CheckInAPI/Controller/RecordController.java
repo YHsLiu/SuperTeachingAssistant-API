@@ -23,6 +23,7 @@ public class RecordController {
         JSONObject Info = new JSONObject();
         Info.put("type",2);
         Info.put("list",recordService.SemesterRecord(cid));
+        System.out.println("要回傳的"+Info);
         return Info.toString();
     }
 
@@ -47,6 +48,7 @@ public class RecordController {
         JSONObject Info = new JSONObject();
         Info.put("type",4);
         Info.put("list",recordService.StudentRecord(cid,sid));
+        System.out.println("StudentRecord Info:"+Info);
         return Info.toString();
     }
 }

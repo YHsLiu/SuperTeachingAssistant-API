@@ -27,7 +27,7 @@ public class LoginRepository implements LoginDao {
 
     @Override
     public long checkStudent(String acc, String pwd, String univ) {
-        String sql = "select count(*) from 學生資料 where 學號=? and 密碼=? and 學校=?";
+        String sql = "select count(*) from 學生資料 where 學號=? and 密碼=? and 學校=?;";
         long count =jdbcTemplate.queryForObject(sql,new Object[]{acc,pwd,univ}, Long.class);
         return count;
     }

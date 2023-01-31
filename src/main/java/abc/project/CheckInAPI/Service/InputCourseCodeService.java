@@ -10,7 +10,7 @@ public class InputCourseCodeService {
     @Autowired
     InputCourseCodeRepository repository;
 
-    public JSONObject getCodeResult(String code){
+    public JSONObject getCodeResult(String code, int sid){
 
         long c = repository.checkCode(code);
         JSONObject result = new JSONObject();
@@ -20,8 +20,11 @@ public class InputCourseCodeService {
             result.put("mesg","查無課程名稱");
         }
         else{
-            result.put("status",16);
+            result.put("status",16);          //有該課程代碼，取得課程名稱&CID
             result.put("mesg",repository.getName(code));
+            result.put("cid",repository.getCid(code));
+            repository.putSidinClass(repository.getCid(code),sid);
+
         }
 
         return result;

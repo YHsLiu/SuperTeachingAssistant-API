@@ -72,9 +72,10 @@ public class RollCallRepository implements RollCallDao {
     }
 
     @Override
-    public int SEnterCheckRollCall(int cid) {
+    public int SEnterCheckRollCall(int cid) {  //有沒有開點名(0.1)
         String sql = "select 點名 from 課程 where cid=?";
         int c = jdbcTemplate.queryForObject(sql,new Object[]{cid},Integer.class);
+        System.out.println("SEnterCheckRollCall c: "+c);
         return c;
     }
 
