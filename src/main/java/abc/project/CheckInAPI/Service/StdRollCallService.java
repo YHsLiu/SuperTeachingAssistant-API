@@ -37,6 +37,7 @@ public class StdRollCallService {
             System.out.println("stdEnterRollCallCheck : 未開放點名(0)");
             // 未開放點名(0)
             data.put("type",3);
+            data.put("status", 0);
         }
         return data.toString();
     }

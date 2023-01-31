@@ -1,9 +1,12 @@
 package abc.project.CheckInAPI.Repository;
 
 import abc.project.CheckInAPI.Repository.Dao.CreateClassDao;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.Map;
 
 @Repository
 public class CreateClassRepository implements CreateClassDao {
@@ -24,7 +27,8 @@ public class CreateClassRepository implements CreateClassDao {
         jdbcTemplate.update(sql,name,code,semester,tid,0);
         System.out.println("完成新增課程");
         String sql1 = "select cid from 課程 where 課程代碼=? and 學年度=?;";
-        int cid = jdbcTemplate.queryForObject(sql1,new Object[]{code,semester},Integer.class);
+        Map<String,Object> result = jdbcTemplate.queryForMap(sql1,new Object[]{code,semester});
+        int cid = (int) result.get("cid");
         return cid;
     }
 }
