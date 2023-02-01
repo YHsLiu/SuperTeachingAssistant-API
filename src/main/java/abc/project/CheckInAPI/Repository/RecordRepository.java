@@ -31,6 +31,7 @@ public class RecordRepository implements RecordDao {
     public List<Map<String, Object>> RollCallRecordForStudent(int cid, int sid) {
         String sql = "select cid,sid,日期 from 點名紀錄 where cid=? and sid in (0,?) and 日期 not in(?) order by 日期,sid;";
         List<Map<String, Object>> recordForStudent = jdbcTemplate.queryForList(sql,new Object[]{cid,sid,"d"});
+        System.out.println("RecordForStudent:"+recordForStudent);
         return recordForStudent;
     }
 }
