@@ -23,7 +23,7 @@ public class StdRollCallController {
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         String dd = data.getString("date");
-        System.out.println("api點按鈕後來的data"+data);
+        System.out.println("data after clicking button and sending from api:"+data);
         return service.stdRollCallResult(cid,sid,dd); // 回傳String 若為2即為成功
     }
 
@@ -35,7 +35,7 @@ public class StdRollCallController {
         int cid = data.getInt("cid");
         int sid = data.getInt("sid");
         String dd = data.getString("date");
-        System.out.println("EnterCheckRollCall 前端來的"+data);
+        System.out.println("EnterCheckRollCall from front:"+data);
         return service.stdEnterRollCallCheck(cid,sid,dd); // 回傳String 若為2即為成功
     }
 }

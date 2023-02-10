@@ -16,8 +16,9 @@ public class RollCallRepository implements RollCallDao {
 
     @Override
     public long TcheckRollCall(int cid, String dd) {
-        String sql = "select count(*) from 點名紀錄 where cid=? and 日期=?;";
-        long c = jdbcTemplate.queryForObject(sql,new Object[]{cid,dd}, Long.class);
+        String sql = "select count(*) from 點名紀錄 where cid=? and sid=? and 日期=?;";
+        long c = jdbcTemplate.queryForObject(sql,new Object[]{cid,0,dd}, Long.class);
+        System.out.println("TeacherCheckRollCall c:"+c);
         return c;
     }
 
@@ -90,6 +91,9 @@ public class RollCallRepository implements RollCallDao {
     @Override
     public void RollCallForStudent(int sid, int cid, String dd) {
         String sql = "insert into 點名紀錄([cid],[sid],[日期]) values (?,?,?);";
+        String sql1 = "select count(*) from 點名紀錄 where cid=? and sid=? and 日期=?";
+        long c = jdbcTemplate.queryForObject(sql1,new Object[]{cid,sid,dd},Long.class);
+        System.out.println("RollCallForStudent check c="+c);
         jdbcTemplate.update(sql,cid,sid,dd);
     }
 }
