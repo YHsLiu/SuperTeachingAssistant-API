@@ -21,6 +21,7 @@ public class LotteryService {
         if( lotteryRepository.CheckRollCallForLottery(cid, date)>0 ){
             sids = lotteryRepository.LotteryByRollCall(cid,date);
             System.out.println("有點名的抽籤名單");
+
         } else {
             sids = lotteryRepository.LotteryAll(cid);
         }
